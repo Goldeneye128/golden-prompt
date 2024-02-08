@@ -6,9 +6,11 @@ Simple zsh prompt with fish like functionality and git support.
 
 git clone the project under .config
 
-legg til dette på .zprofile
+add this to your .zprofile
 ```
 export ZDOTDIR="$HOME/.config/goldenprompt"
 ```
 
-log ut og inn så er alt ok
+relog yourself into your account then its all okay.
+Change alias and function folder as you see fit.
+This is based on zsh on macos, but you can modify the aliases and function to make it work in most linux/unix systems.
