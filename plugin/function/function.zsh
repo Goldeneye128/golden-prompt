@@ -2,44 +2,42 @@
 
 # Update Alias
 function up() {
-    green='\033[0;32m'
-    nc='\033[0m'
-    echo -e "${green}Updating System${nc}"
-    echo -en "${green}Type your admin password: ${nc}"
-    read -s PASSWD
-    echo -e ""
-    pwd=$(pwd)
-    cd $HOME/settings/Brewfiles 
-    echo -e "${green}Updating Brewfiles${nc}"
-    rm Brewfile 
-    rm Brewfile.lock.json 
-    brew bundle dump 
-    echo -e "${green}Updating Repository${nc}"
-    brew update
-    brew upgrade
-    brew bundle
-    echo -e "${green}Cleaning up System${nc}"
-    brew cleanup --prune=all
-    brew bundle cleanup --force
-    brew doctor
-    echo -e "$PASSWD\n" | sudo -S rm -rf $HOME/.Trash/*
-    echo -e ""
-    echo -e "${green}Updating pip Repository${nc}"
-    pip-review --auto
-    for i in $(pip3 list -o | awk 'NR > 2 {print $1}'); do sudo pip3 install -U $i; done
-    echo -e "${green}Updating Ruby${nc}"
-    gem update
-    update_rubygems
-    gem update --system
-    echo -e "${green}Updating npm${nc}"
-    npm update -g
-    npm install npm@latest -g
-    echo -e "${green}Updating MacOS${nc}"
-    cd $pwd
-    echo -e "$PASSWD\n" | sudo -S softwareupdate -iaR —verbose
-    echo -e ""
-    PASSWD="Nothing too see here"
-    echo -e "${green}System is up to date${nc}"
+  local PASSWD=$(pass show main)
+  local pwd=$(pwd)
+  local green='\033[0;32m'
+  local nc='\033[0m'
+  echo -e "${green}Updating System${nc}"
+  cd $HOME/settings/Brewfiles 
+  echo -e "${green}Updating Brewfiles${nc}"
+  rm Brewfile 
+  rm Brewfile.lock.json 
+  brew bundle dump 
+  echo -e "${green}Updating Repository${nc}"
+  brew update
+  brew upgrade
+  brew bundle
+  echo -e "${green}Cleaning up System${nc}"
+  brew cleanup --prune=all
+  brew bundle cleanup --force
+  brew doctor
+  echo -e "$PASSWD\n" | sudo -S rm -rf $HOME/.Trash/*
+  echo -e ""
+  echo -e "${green}Updating pip Repository${nc}"
+  pip-review --auto
+  for i in $(pip3 list -o | awk 'NR > 2 {print $1}'); do sudo pip3 install -U $i; done
+  echo -e "${green}Updating Ruby${nc}"
+  gem update
+  update_rubygems
+  gem update --system
+  echo -e "${green}Updating npm${nc}"
+  npm update -g
+  npm install npm@latest -g
+  echo -e "${green}Updating MacOS${nc}"
+  cd $pwd
+  echo -e "$PASSWD\n" | sudo -S softwareupdate -iaR —verbose
+  echo -e ""
+  PASSWD="Nothing too see here"
+  echo -e "${green}System is up to date${nc}"
 }
 
 # uptime
