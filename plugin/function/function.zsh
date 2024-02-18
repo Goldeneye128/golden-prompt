@@ -1,68 +1,23 @@
 # function alias
 
-# Update Alias
-function up() {
-  local PASSWD=$(pass show main)
-  local pwd=$(pwd)
-  local green='\033[0;32m'
-  local nc='\033[0m'
-  echo -e "${green}Updating System${nc}"
-  cd $HOME/settings/Brewfiles 
-  echo -e "${green}Updating Brewfiles${nc}"
-  rm Brewfile 
-  rm Brewfile.lock.json 
-  brew bundle dump 
-  echo -e "${green}Updating Repository${nc}"
-  brew update
-  brew upgrade
-  brew bundle
-  echo -e "${green}Cleaning up System${nc}"
-  brew cleanup --prune=all
-  brew bundle cleanup --force
-  brew doctor
-  echo -e "$PASSWD\n" | sudo -S rm -rf $HOME/.Trash/*
-  echo -e ""
-  echo -e "${green}Updating pip Repository${nc}"
-  pip-review --auto
-  for i in $(pip3 list -o | awk 'NR > 2 {print $1}'); do sudo pip3 install -U $i; done
-  echo -e "${green}Updating Ruby${nc}"
-  gem update
-  update_rubygems
-  gem update --system
-  echo -e "${green}Updating npm${nc}"
-  npm update -g
-  npm install npm@latest -g
-  echo -e "${green}Updating MacOS${nc}"
-  cd $pwd
-  echo -e "$PASSWD\n" | sudo -S softwareupdate -iaR —verbose
-  echo -e ""
-  PASSWD="Nothing too see here"
-  echo -e "${green}System is up to date${nc}"
-}
-
-# uptime
-  function ut() {
-  boottime=`sysctl -n kern.boottime | awk '{print $4}' | sed 's/,//g'`
-  unixtime=`date +%s`
-  timeAgo=$(($unixtime - $boottime))
-  uptime=`awk -v time=$timeAgo 'BEGIN { seconds = time % 60; minutes = int(time / 60 % 60); hours = int(time / 60 / 60 % 24); days = int(time / 60 / 60 / 24); printf("%.0f days, %.0f hours, %.0f minutes, %.0f seconds", days, hours, minutes, seconds); exit }'`
-  echo $uptime
-}
-
+# function to burn iso
 function usbburn() {
   local iso=$1
   sudo dd bs=4M if=$iso of=/dev/sda conv=fsync oflag=direct status=progress
 }
 
+# hash passwords
 function hashpass() {
     python -c "import crypt; print(crypt.crypt('$1', crypt.mksalt(crypt.METHOD_SHA512)))"
 }
 
-function tag() {
+# simple git tager
+function tag-git() {
 	git tag -a v$1.0 -m "version $1.0"
 	git push --tag
 }
 
+# lazy git
 function gitz() {
   datos=$(date +%Y-%m-%d)
 	git add .
@@ -70,3 +25,8 @@ function gitz() {
 	git push
 }
 
+# source user-function.zsh
+if [ ! -f "$HOME/.config/goldenprompt/plugin/function/user-function.zsh" ]; then
+    touch "$HOME/.config/goldenprompt/plugin/function/user-function.zsh"
+fi
+source $HOME/.config/goldenprompt/plugin/function/user-function.zsh

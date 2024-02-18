@@ -1,42 +1,30 @@
-# alias
+# alias cd
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
+
+# alias history
 alias history="history 0"
-alias q="exit"
-alias v="nvim"
-alias c="clear"
-alias n="clear && neofetch"
-alias r="ranger"
-alias pip="pip3"
-alias sv="sudo vim"
-alias za="nvim $HOME/.config/goldenprompt/plugin/alias/alias.zsh"
-alias zf="nvim $HOME/.config/goldenprompt/plugin/function/function.zsh"
-alias krc="nvim $HOME/.config/kitty/kitty.conf"
-alias sz="source $HOME/.config/goldenprompt/.zshrc"
-alias clock='tty-clock -C 3 -sct -f "%a, %d %b %Y %T %z"'
-alias matrix="unimatrix -s 97"
-alias eier="sudo chown -R christian:christian"
-alias su="sudo su"
+
+# alias ls
 alias ls="eza --color always --icons --sort name --group-directories-first"
 alias la="eza --color always --icons --sort name --group-directories-first --long --all"
 alias ll="eza --color always --icons --sort name --group-directories-first --long"
 alias l="eza --color always --icons --sort name --group-directories-first --long"
-alias vmscan="sudo arp -an"
-alias jquake="sudo xattr -r -d com.apple.quarantine /Applications/JQuake.app"
-alias neoup="sudo xattr -r -d com.apple.quarantine /Applications/Neovide.app"
-alias yr="curl wttr.in"
-alias win="VBoxManage startvm Windows"
-alias browse="open -a /Applications/Firefox.app"
-alias manga="$HOME/mangadesk/mangadesk/mangadesk"
-alias i2p='img2pdf * -o "${PWD##*/}".pdf'
-alias gitr="git fetch --all && git reset --hard && git clean -fdx && git remote update origin --prune && git pull"
-alias gitp="git fetch --all && git remote update origin --prune && git pull"
 
-# server alias
-alias deb="ssh deb"
-alias rock="ssh rock"
-alias home="ssh home"
-alias laptop="ssh laptop"
+#alias shortcuts
+alias q="exit"
+alias v="nvim"
+alias c="clear"
+alias sv="sudo vim"
+alias za="nvim $HOME/.config/goldenprompt/plugin/alias/user-alias.zsh"
+alias zf="nvim $HOME/.config/goldenprompt/plugin/function/user-function.zsh"
+alias sz="source $HOME/.config/goldenprompt/.zshrc"
+
+# source user-alias
+if [ ! -f "$HOME/.config/goldenprompt/plugin/alias/user-alias.zsh" ]; then
+    touch "$HOME/.config/goldenprompt/plugin/alias/user-alias.zsh"
+fi
+source $HOME/.config/goldenprompt/plugin/alias/user-alias.zsh
