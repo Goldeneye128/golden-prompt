@@ -1,6 +1,6 @@
 # Goldenprompt
 
-Goldenprompt is a simplistic yet powerful Zsh prompt that incorporates fish-like functionality and seamless git integration. Designed to enhance the terminal experience, it offers a blend of efficiency and aesthetic appeal for developers and terminal enthusiasts alike.
+Goldenprompt is a simplistic yet powerful Zsh prompt that incorporates fish-like functionality and seamless git integration. 
 
 ## Features
 
@@ -10,7 +10,7 @@ Goldenprompt is a simplistic yet powerful Zsh prompt that incorporates fish-like
 
 ## Prerequisites
 
-For the best experience with Goldenprompt, it is recommended to have the following tools installed:
+For the best experience, it is recommended to have the following tools installed:
 
 - `eza`: A command-line utility for easier alias management.
 - `neovim`: An extensible text editor that offers improved functionality over Vim.
@@ -48,7 +48,7 @@ Modify `user-alias.zsh` and `user-function.zsh` according to your preference. Th
 
 ![Screenshot of zsh goldenprompt](https://github.com/Goldeneye128/goldenprompt/assets/93520996/6e3ade05-31b2-40f5-9890-1bfce3488632)
 
-**Note:** While Goldenprompt is designed with macOS in mind, it is versatile enough to be adapted for use in most Linux/Unix systems.
+**Note:** The prompt is designed with macOS and linux in mind, it is versatile enough to be adapted for use in most Linux/Unix systems.
 
 ## Acknowledgements
 
@@ -57,5 +57,3 @@ Special thanks to:
 - [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh): For the sudo, history, and completion functions, and for the inspiration to create Goldenprompt.
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting): For enhancing Zsh with syntax highlighting capabilities.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions): For providing intelligent suggestions at the terminal.
-
-Goldenprompt aims to streamline your terminal interactions and make your command-line experience as productive and enjoyable as possible.
