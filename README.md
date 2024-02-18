@@ -1,14 +1,15 @@
 # Goldenprompt
 
-Goldenprompt is a simplistic yet powerful Zsh prompt that incorporates fish-like functionality and seamless git integration. 
+Goldenprompt is a simple zsh prompt that incorporates fish-like functionality and git integration. 
 
 ![Screenshot of zsh goldenprompt](https://github.com/Goldeneye128/goldenprompt/assets/93520996/6e3ade05-31b2-40f5-9890-1bfce3488632)
 
 ## Features
 
-- Fish-like autosuggestions and syntax highlighting for efficient command entry.
-- Integrated git support to keep track of your repositories' status directly from your prompt.
-- Customizable aliases and functions through user-specific files for a tailored terminal experience.
+- Fish-like autosuggestions and syntax highlighting.
+- Integrated git support.
+- Customizable aliases and functions through user-specific files.
+- and more ...
 
 ## Prerequisites
 
