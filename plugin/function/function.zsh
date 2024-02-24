@@ -13,7 +13,7 @@ function hashpass() {
 
 # simple git tager
 function tag-git() {
-	git tag -a v$1.0 -m "version $1.0"
+	git tag -S -v -a v$1.0 -m "version $1.0"
 	git push --tag
 }
 
