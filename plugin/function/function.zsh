@@ -26,7 +26,7 @@ function gitz() {
 }
 
 # source user-function.zsh
-if [ ! -f "$HOME/.config/goldenprompt/plugin/function/user-function.zsh" ]; then
-    touch "$HOME/.config/goldenprompt/plugin/function/user-function.zsh"
+if [ ! -f "$HOME/.function.zsh" ]; then
+    touch "$HOME/.function.zsh"
 fi
 source $HOME/.function.zsh

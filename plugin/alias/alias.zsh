@@ -24,7 +24,7 @@ alias zf="nvim $HOME/.function.zsh"
 alias sz="source $HOME/.config/goldenprompt/.zshrc"
 
 # source user-alias
-if [ ! -f "$HOME/.config/goldenprompt/plugin/alias/user-alias.zsh" ]; then
-    touch "$HOME/.config/goldenprompt/plugin/alias/user-alias.zsh"
+if [ ! -f "$HOME/.alias.zsh" ]; then
+    touch "$HOME/.alias.zsh"
 fi
 source $HOME/.alias.zsh

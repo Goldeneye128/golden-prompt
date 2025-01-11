@@ -1,4 +1,2 @@
 # ignore files
-plugin/alias/user-alias.zsh
-plugin/function/user-function.zsh
 .zcompdump
