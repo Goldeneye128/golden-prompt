@@ -29,4 +29,4 @@ function gitz() {
 if [ ! -f "$HOME/.config/goldenprompt/plugin/function/user-function.zsh" ]; then
     touch "$HOME/.config/goldenprompt/plugin/function/user-function.zsh"
 fi
-source $HOME/.config/goldenprompt/plugin/function/user-function.zsh
+source $HOME/.function.zsh
