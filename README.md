@@ -1,62 +1,96 @@
 # Goldenprompt
 
-Goldenprompt is a simple zsh prompt that incorporates fish-like functionality and git integration. 
+Goldenprompt is a lightweight Zsh setup with:
 
-![Screenshot goldenprompt 1](https://github.com/Goldeneye128/goldenprompt/assets/93520996/a0da594b-268e-4979-ad87-0ac0b7e67e06)
+- Git-aware prompt.
+- Autosuggestions and syntax highlighting.
+- Vi-friendly command-line editing and safer paste behavior.
+- Optional `fzf` keybindings/completion integration.
+- User override files for aliases and functions.
 
-## Features
+![Goldenprompt screenshot 1](https://github.com/Goldeneye128/goldenprompt/assets/93520996/a0da594b-268e-4979-ad87-0ac0b7e67e06)
 
-- Fish-like autosuggestions and syntax highlighting.
-- Integrated git support.
-- Customizable aliases and functions through user-specific files.
-- and more ...
+## Install
 
-![Screenshot goldenprompt 2](https://github.com/Goldeneye128/goldenprompt/assets/93520996/132ebe0b-9f3e-40df-b77e-63af1a41df89)
-
-## Prerequisites
-
-For the best experience, it is recommended to have the following tools installed:
-
-- `eza`: A command-line utility for easier alias management.
-- `neovim`: An extensible text editor that offers improved functionality over Vim.
-
-## Installation
-
-### Step 1: Clone the Repository
-
-Clone Goldenprompt into your `.config` directory:
+Clone into your config directory:
 
 ```bash
-git clone https://github.com/Goldeneye128/goldenprompt.git $HOME/.config/goldenprompt
+git clone --recurse-submodules https://github.com/Goldeneye128/goldenprompt.git "$HOME/.config/goldenprompt"
 ```
 
-### Step 2: Configuration
+Source it from your real `~/.zshrc` (or `~/.zprofile`):
 
-To activate Goldenprompt, add the following to your `.zprofile`:
-
-```bash
-export ZDOTDIR="$HOME/.config/goldenprompt"
-
-Alternatively, you can source Goldenprompt in your `.zshrc`:
-
-```bash
-source "$HOME/.config/goldenprompt/.zshrc"
+```zsh
+source "$HOME/.config/goldenprompt/goldenprompt.zsh"
 ```
 
-### Step 3: Relog
+Restart your shell.
 
-For the changes to take effect, relog into your account.
+## Quick Installer
 
-### Step 4: Customize
+If you prefer a one-command setup:
 
-Modify `user-alias.zsh` and `user-function.zsh` according to your preference. These files can be edited directly or symlinked to your custom Zsh aliases and functions for enhanced personalization.
+```bash
+bash install.sh
+```
 
-**Note:** The prompt is designed with macOS and linux in mind, it is versatile enough to be adapted for use in most Linux/Unix systems.
+This will clone/update Goldenprompt and add the source line to your `~/.zshrc` (or `~/.zprofile` fallback).
+
+## File Layout
+
+- `goldenprompt.zsh`: Main entrypoint.
+- `core/`: First-party config modules.
+- `vendor/`: Third-party prompt/plugins as git submodules.
+
+If you already cloned without submodules:
+
+```bash
+cd "$HOME/.config/goldenprompt"
+git submodule update --init --recursive
+```
+
+## Customization
+
+Goldenprompt auto-sources user files:
+
+- `~/.goldenprompt_aliases.zsh`
+- `~/.goldenprompt_functions.zsh`
+
+For backward compatibility, if those are missing, it will fall back to:
+
+- `~/.alias.zsh`
+- `~/.function.zsh`
+
+## Notes
+
+- `eza` is optional and used for enhanced `ls` aliases when installed.
+- `nvim` is optional and used by convenience aliases.
+- `fzf` is optional. Goldenprompt ships built-in `Ctrl+R`/`Ctrl+T` fzf widgets.
+- Set `GOLDENPROMPT_USE_USER_FZF_ZSH=1` if you prefer to source your existing `~/.fzf.zsh`.
+
+## Editing Shortcuts Added
+
+- `Ctrl+Left` and `Ctrl+Right`: move by word.
+- `Alt+b` and `Alt+f`: move by word.
+- `Ctrl+W`, `Ctrl+U`, `Ctrl+K`, `Ctrl+Y`: delete/yank in insert mode.
+- `Ctrl+X Ctrl+Y`: copy full command buffer to system clipboard.
+- `Ctrl+X Ctrl+W`: copy selected region to system clipboard.
+- `Ctrl+X Ctrl+P`: paste from system clipboard.
+
+## Updating Vendor Plugins
+
+```bash
+cd "$HOME/.config/goldenprompt"
+git submodule update --init --recursive
+git submodule update --remote --recursive
+# or use the helper:
+./scripts/update-vendor.sh
+```
+
+![Goldenprompt screenshot 2](https://github.com/Goldeneye128/goldenprompt/assets/93520996/132ebe0b-9f3e-40df-b77e-63af1a41df89)
 
 ## Acknowledgements
 
-Special thanks to:
-
-- [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh): For the sudo, history, and completion functions, and for the inspiration to create Goldenprompt.
-- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting): For enhancing Zsh with syntax highlighting capabilities.
-- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions): For providing intelligent suggestions at the terminal.
+- [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
+- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
