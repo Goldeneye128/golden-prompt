@@ -18,6 +18,7 @@ typeset -a _goldenprompt_modules=(
   "$GOLDENPROMPT_HOME/vendor/git-prompt/git-prompt.zsh"
   "$GOLDENPROMPT_HOME/vendor/zsh-autosuggestions/zsh-autosuggestions.zsh"
   "$GOLDENPROMPT_HOME/vendor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  "$GOLDENPROMPT_HOME/core/prompt.zsh"
 )
 
 for _module_file in "${_goldenprompt_modules[@]}"; do
