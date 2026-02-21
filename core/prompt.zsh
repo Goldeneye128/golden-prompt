@@ -12,3 +12,6 @@ setopt prompt_subst
 # - blue: path
 # - cyan: prompt symbol
 PROMPT='%F{yellow}%n@%m%f%F{white}:%f%F{blue}%(3~|%-1~/…/%2~|%3~)%f $(gitprompt)%F{cyan}❯%f '
+
+# vi-mode indicator is set by core/editor.zsh during zle sessions.
+RPROMPT='${GOLDENPROMPT_MODE_RPROMPT}'

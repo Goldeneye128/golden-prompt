@@ -36,6 +36,41 @@ for _keymap in viins emacs; do
   bindkey -M "$_keymap" '^[[H' beginning-of-line
   bindkey -M "$_keymap" '^[[F' end-of-line
 done
+
+# Make Ctrl+A / Ctrl+E behave consistently in all active keymaps.
+for _keymap in viins vicmd emacs; do
+  bindkey -M "$_keymap" '^A' beginning-of-line
+  bindkey -M "$_keymap" '^E' end-of-line
+done
+
+# Show vi mode clearly on the right side of the prompt.
+typeset -g GOLDENPROMPT_MODE_RPROMPT=""
+_goldenprompt_set_mode_rprompt() {
+  if [[ "$KEYMAP" == vicmd ]]; then
+    GOLDENPROMPT_MODE_RPROMPT='%F{yellow}[N]%f'
+  else
+    GOLDENPROMPT_MODE_RPROMPT='%F{green}[I]%f'
+  fi
+}
+
+function zle-keymap-select {
+  _goldenprompt_set_mode_rprompt
+  zle reset-prompt
+}
+zle -N zle-keymap-select
+
+function zle-line-init {
+  zle -K viins
+  _goldenprompt_set_mode_rprompt
+  zle reset-prompt
+}
+zle -N zle-line-init
+
+function zle-line-finish {
+  GOLDENPROMPT_MODE_RPROMPT=""
+}
+zle -N zle-line-finish
+
 unset _keymap
 
 # Clipboard helpers for copy/paste from the shell editing buffer.

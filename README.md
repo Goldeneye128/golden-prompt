@@ -36,6 +36,14 @@ bash install.sh
 
 This will clone/update Goldenprompt and add the source line to your `~/.zshrc` (or `~/.zprofile` fallback).
 
+## Quick Update
+
+To update Goldenprompt (including scripts and submodules):
+
+```bash
+bash update.sh
+```
+
 ## File Layout
 
 - `goldenprompt.zsh`: Main entrypoint.
@@ -72,10 +80,13 @@ For backward compatibility, if those are missing, it will fall back to:
 
 - `Ctrl+Left` and `Ctrl+Right`: move by word.
 - `Alt+b` and `Alt+f`: move by word.
+- `Ctrl+A` and `Ctrl+E`: move to beginning/end of line.
 - `Ctrl+W`, `Ctrl+U`, `Ctrl+K`, `Ctrl+Y`: delete/yank in insert mode.
 - `Ctrl+X Ctrl+Y`: copy full command buffer to system clipboard.
 - `Ctrl+X Ctrl+W`: copy selected region to system clipboard.
 - `Ctrl+X Ctrl+P`: paste from system clipboard.
+- Vi mode: prompt shows `[I]` for insert mode and `[N]` for normal mode on the right side.
+- Vi mode controls: press `Esc` for normal mode, `i` to return to insert mode.
 
 ## Updating Vendor Plugins
 
