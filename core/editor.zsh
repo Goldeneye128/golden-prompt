@@ -18,10 +18,15 @@ zle -N self-insert url-quote-magic
 
 # Insert-mode navigation and kill/yank shortcuts.
 for _keymap in viins emacs; do
+  # Ctrl+Arrow and Alt+Arrow sequences across terminals (kitty, xterm, tmux variants).
   bindkey -M "$_keymap" '^[[1;5D' backward-word
   bindkey -M "$_keymap" '^[[1;5C' forward-word
   bindkey -M "$_keymap" '^[[5D' backward-word
   bindkey -M "$_keymap" '^[[5C' forward-word
+  bindkey -M "$_keymap" '^[[1;3D' backward-word
+  bindkey -M "$_keymap" '^[[1;3C' forward-word
+  bindkey -M "$_keymap" '^[[3D' backward-word
+  bindkey -M "$_keymap" '^[[3C' forward-word
   bindkey -M "$_keymap" '^[b' backward-word
   bindkey -M "$_keymap" '^[f' forward-word
   bindkey -M "$_keymap" '^[[3;5~' kill-word
@@ -35,6 +40,10 @@ for _keymap in viins emacs; do
   bindkey -M "$_keymap" '^G' kill-region
   bindkey -M "$_keymap" '^[[H' beginning-of-line
   bindkey -M "$_keymap" '^[[F' end-of-line
+  bindkey -M "$_keymap" '^[[1~' beginning-of-line
+  bindkey -M "$_keymap" '^[[4~' end-of-line
+  bindkey -M "$_keymap" '^[OH' beginning-of-line
+  bindkey -M "$_keymap" '^[OF' end-of-line
 done
 
 # Make Ctrl+A / Ctrl+E behave consistently in all active keymaps.
@@ -42,6 +51,10 @@ for _keymap in viins vicmd emacs; do
   bindkey -M "$_keymap" '^A' beginning-of-line
   bindkey -M "$_keymap" '^E' end-of-line
 done
+
+# Ensure Esc reliably enters normal mode in vi insert map.
+bindkey -M viins $'\e' vi-cmd-mode
+bindkey -M viins '^[' vi-cmd-mode
 
 # Show vi mode clearly on the right side of the prompt.
 typeset -g GOLDENPROMPT_MODE_RPROMPT=""

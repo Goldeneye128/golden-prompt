@@ -75,6 +75,17 @@ For backward compatibility, if those are missing, it will fall back to:
 - `nvim` is optional and used by convenience aliases.
 - `fzf` is optional. Goldenprompt ships built-in `Ctrl+R`/`Ctrl+T` fzf widgets.
 - Set `GOLDENPROMPT_USE_USER_FZF_ZSH=1` if you prefer to source your existing `~/.fzf.zsh`.
+- Works on both macOS and Linux.
+
+## Kitty Notes
+
+- If you use Kitty across macOS and Linux, include `docs/kitty.conf` in your Kitty config.
+- On macOS, `macos_option_as_alt yes` is important for `Alt+b` / `Alt+f` style word movement.
+- In `~/.config/kitty/kitty.conf`, add:
+
+```conf
+include ~/.config/goldenprompt/docs/kitty.conf
+```
 
 ## Editing Shortcuts Added
 
