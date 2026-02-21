@@ -59,6 +59,44 @@ gitz() {
   git commit -S -v -m "$message" && git push
 }
 
+# Run a command, print output, and copy stdout to the system clipboard.
+_goldenprompt_copy_to_clipboard() {
+  if (( $+commands[pbcopy] )); then
+    pbcopy
+  elif (( $+commands[wl-copy] )); then
+    wl-copy
+  elif (( $+commands[xclip] )); then
+    xclip -in -selection clipboard
+  elif (( $+commands[xsel] )); then
+    xsel --clipboard --input
+  else
+    return 1
+  fi
+}
+
+cc() {
+  if (( $# == 0 )); then
+    print -u2 "usage: cc <command> [args...]"
+    return 2
+  fi
+
+  local tmp rc
+  tmp="$(mktemp -t goldenprompt-cc.XXXXXX 2>/dev/null || mktemp)"
+  [[ -n "$tmp" ]] || return 1
+
+  "$@" | tee "$tmp"
+  rc=${pipestatus[1]}
+
+  if _goldenprompt_copy_to_clipboard <"$tmp"; then
+    print -u2 "cc: output copied to clipboard"
+  else
+    print -u2 "cc: clipboard command not found (pbcopy/wl-copy/xclip/xsel)"
+  fi
+
+  rm -f "$tmp"
+  return "$rc"
+}
+
 # Source user functions.
 typeset -g GOLDENPROMPT_USER_FUNCTION_FILE="${GOLDENPROMPT_USER_FUNCTION_FILE:-$HOME/.goldenprompt_functions.zsh}"
 if [[ ! -f "$GOLDENPROMPT_USER_FUNCTION_FILE" && -f "$HOME/.function.zsh" ]]; then

@@ -99,6 +99,17 @@ include ~/.config/goldenprompt/docs/kitty.conf
 - Vi mode: prompt shows `[I]` for insert mode and `[N]` for normal mode on the right side.
 - Vi mode controls: press `Esc` for normal mode, `i` to return to insert mode.
 
+## Copy Command Output
+
+- Use `cc` to run a command and copy its stdout to clipboard:
+
+```bash
+cc echo "copy text"
+cc ls -la
+```
+
+- `cc` keeps normal command output in the terminal and also copies it.
+
 ## Updating Vendor Plugins
 
 ```bash
